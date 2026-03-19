@@ -1,3 +1,5 @@
+.DEFAULT_GOAL := help
+
 help:
 	@echo "This makefile for repo-level activity"
 
