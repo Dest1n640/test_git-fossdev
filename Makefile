@@ -2,12 +2,18 @@ help:
 	@echo "This makefile for repo-level activity"
 
 create-practice:
+ifndef PRACTICE
+	$(error must pass val via PRACTICE)
+endif
 	@echo "Create directory demo-practive"
-	mkdir -p demo-practice
+	mkdir -p $(PRACTICE)
 
 remove-practice:
+ifndef PRACTICE
+	$(error must pass val via PRACTICE)
+endif
 	@echo "Remove directory demo-practice"
-	rm -rf demo-practice
+	rm -rf $(PRACTICE)
 
 # mkdir demo-practice
 # mkdir demo-practice/src
