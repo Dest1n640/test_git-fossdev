@@ -9,6 +9,7 @@ ifndef PRACTICE
 endif
 	@echo "Create directory demo-practive"
 	mkdir -p $(PRACTICE)
+	cp practiceMakefile $(PRACTICE)/Makefile
 
 remove-practice:
 ifndef PRACTICE
