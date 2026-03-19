@@ -9,6 +9,9 @@ create-structure:
 	touch src/.gitkeep
 	touch tests/.gitkeep
 
+# install-venv:
+# 	python3.11 -m venv .venv 
+
 install-dep:
 	pip install -r requirements.txt
 
@@ -17,3 +20,5 @@ install:
 
 test-pytest:
 	python3 -m pytest 
+
+test: install-venv install-dep install test-pytest
