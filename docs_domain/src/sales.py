@@ -11,6 +11,14 @@ def _parse_record(line: str):
     unit_price = float(sale[2])
     quantily = int(sale[3])
 
+    try:
+        unit_price = float(sale[2])
+        quantily = int(sale[3])
+        if int(sale[3]) != float(sale[3]):
+            return None
+    except ValueError:
+        return None
+
     return {"n": product_name, "c": category, "a": unit_price, "q": quantily}
 
 
