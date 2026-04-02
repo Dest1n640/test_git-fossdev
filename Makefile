@@ -8,8 +8,9 @@ ifndef PRACTICE
 	$(error must pass val via PRACTICE)
 endif
 	@echo "Create directory demo-practive"
-	mkdir -p $(PRACTICE)
-	cp practiceMakefile $(PRACTICE)/Makefile
+	mkdir src tests docs
+	touch docs/DOMAIN.md docs/SPECIFICATION.md 
+	touch src/.gitkeep tests/.gitkeep
 
 remove-practice:
 ifndef PRACTICE
