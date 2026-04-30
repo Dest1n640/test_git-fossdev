@@ -1,9 +1,9 @@
-sercice:
+services:
   product-service:
     build: ./product_service 
     ports:
       - "8001:8000"
-    network:
+    networks:
       - service-net
 
   order-service:
@@ -14,10 +14,10 @@ sercice:
       PRODUCT_SERVICE_URL: http://product-service:8000
     depends_on:
       - product-service
-    network:
+    networks:
       - service-net
 
-network:
+networks:
   service-net:
     driver: bridge
     ipam:
