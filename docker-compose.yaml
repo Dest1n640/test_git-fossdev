@@ -6,15 +6,29 @@ services:
     networks:
       - service-net
 
+  discount-service:
+    build: ./discount_service
+    ports:
+      - "8003:8000"
+    environment:
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      - redis
+    networks:
+      - service-net
+
   order-service:
     build: ./order_service
     ports:
       - "8002:8000"
     environment:
       PRODUCT_SERVICE_URL: http://product-service:8000
+      DISCOUNT_SERVICE_URL: http://discount-service:8000
       DATABASE_URL: postgresql://app:app@db:5432/orders
     depends_on:
       product-service:
+        condition: service_started
+      discount-service:
         condition: service_started
       db:
         condition: service_healthy
@@ -39,6 +53,13 @@ services:
     networks:
       - service-net
 
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    networks:
+      - service-net
+
 volumes:
   order-db-data:
 
@@ -48,7 +69,3 @@ networks:
     ipam:
       config:
         - subnet: 172.28.10.0/24
-
-
-
-    
