@@ -16,6 +16,21 @@ services:
       - product-service
     networks:
       - service-net
+    volumes:
+      - order-db-data:/var/lib/postgresql/data
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app 
+      POSTGRES_DB: orders
+    ports: 
+      - "5432:5432"
+    networks:
+      - service-net
+    volumes:
+      - order-db-data:/var/lib/postgresql/data
 
 networks:
   service-net:
@@ -23,3 +38,6 @@ networks:
     ipam:
       config:
         - subnet: 172.28.10.0/24
+
+volumes:
+  order-db-data:
