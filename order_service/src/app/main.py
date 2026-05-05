@@ -1,11 +1,3 @@
-import os
-
-import httpx
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field
-
-
-app = FastAPI(title="Order Service")
 
 
 PRODUCT_SERVICE_URL = os.getenv(
